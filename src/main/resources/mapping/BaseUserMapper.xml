@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.invoice_steward.main.dao.BaseUserMapper">
+    <resultMap id="BaseResultMap" type="com.asiainfo.invoice_steward.main.bean.BaseUser">
+        <id column="account_code" jdbcType="BIGINT" property="accountCode"/>
+        <result column="is_auth" jdbcType="BIT" property="isAuth"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    account_code, is_auth
+  </sql>
+    <select id="checkAuthStatus" parameterType="java.lang.Long" resultType="int">
+        select
+        count(1)
+        from base_user
+        where account_code = #{accountCode,jdbcType=BIGINT} and is_auth = 1
+    </select>
+
+</mapper>
